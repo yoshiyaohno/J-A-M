@@ -1,14 +1,4 @@
-#include <locale.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include "movement.h"
-#include "networking.h"
-#include "draw.h"
-#include "diff.h"
-#include "player.h"
-
-#define _XOPEN_SOURCE_EXTENDED 1
+#include "client.h"
 
 int main(int argc, char **argv)
 {
@@ -56,8 +46,6 @@ int main(int argc, char **argv)
         }
         printf("received depth [%i]\n", y);
     }
-    // close(read_pipe);
-    // read_pipe = open("h2g", O_RDONLY | O_NONBLOCK);
 
     // make the socket non-blocking
     int flags = fcntl(server_socket, F_GETFL, 0);

@@ -1,6 +1,14 @@
-all: main.o guest.o networking.o diff.o draw.o movement.o map.o player.h
-	gcc -o play_host  main.o  networking.o diff.o draw.o movement.o map.o -lncursesw
-	gcc -o play_guest guest.o networking.o diff.o draw.o movement.o map.o -lncursesw
+server: server.o map.o networking.o server.h
+	gcc -o server server.o map.o networking.o
+
+client: client.o map.o networking.o movement.o draw.o diff.o player.h client.h
+	gcc -o client client.o map.o networking.o movement.o draw.o diff.o -lncursesw
+
+client.o: client.c client.h
+	gcc -c client.c
+
+server.o: server.c server.h
+	gcc -c server.c
 
 guest.o: guest.c
 	gcc -c guest.c
@@ -24,11 +32,4 @@ map.o: map.c map.h
 	gcc -c map.c
 
 clean:
-	rm *.o
-	rm play_host play_guest
-
-host:
-	./play_host
-
-guest:
-	./play_guest $(ARGS)
+	rm *.o server client

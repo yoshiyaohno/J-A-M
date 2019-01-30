@@ -8,7 +8,6 @@
 #include "diff.h"
 #include "player.h"
 
-
 #define _XOPEN_SOURCE_EXTENDED 1
 
 int main()

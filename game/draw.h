@@ -1,9 +1,10 @@
 #ifndef DRAW_H
 #define DRAW_H
+
 #include <ncurses.h>
+#include <wchar.h>
 #include "player.h"
 #include "map.h"
-#include <wchar.h>
 #include "blocks.h"
 
 // draw all windows
