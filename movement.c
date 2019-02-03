@@ -250,12 +250,11 @@ int input_handler(struct actor *jef, struct map *m,
         if(jef->mode == MODE_MOVE) {
             wclear(statusline);
             mvwprintw(statusline, 1, 1,
-                    "[MOVE %+i]  Inv:%i X:%i Y:%i Z:%i MapVal:%i",
-                    (jef->y - jef->view_y), // view level difference
-                    jef->blocks,            // blocks ie inventory
-                    jef->x, jef->y, jef->z, // player coords
-                    m->arr[jef->y][jef->z][jef->x]) // value there
-                    ;
+                    "[MOVE %+i]  Inv:%i X:%i Y:%i Z:%i",
+                    (jef->y - jef->view_y)   // view level difference
+                    , jef->blocks            // blocks ie inventory
+                    , jef->x, jef->y, jef->z // player coords
+                    );
             struct diff mdiff;
             mdiff.type = DIFF_PLAYERMV;
             mdiff.x = jef->x;
@@ -268,12 +267,11 @@ int input_handler(struct actor *jef, struct map *m,
             real_cx = jef->cursor_x + jef->x; // real cursor x
             wclear(statusline);
             mvwprintw(statusline, 1, 1,
-                    "[BUILD %+i] Inv:%i X:%i Y:%i Z:%i MapVal:%i",
-                    (jef->y - jef->view_y),   // view level difference
-                    jef->blocks,              // blocks
-                    real_cx, jef->view_y, real_cz,  // cursor x,y,z
-                    m->arr[jef->view_y][real_cz][real_cx])  //value there
-                    ;
+                    "[BUILD %+i] Inv:%i X:%i Y:%i Z:%i",
+                    (jef->y - jef->view_y)   // view level difference
+                    , jef->blocks            // blocks
+                    , real_cx, jef->view_y, real_cz  // cursor x,y,z
+                    );
         }
     }
     else if(ch == 27) {
