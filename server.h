@@ -7,6 +7,7 @@
 #include <string.h>
 #include "map.h"
 #include "networking.h"
+#include "server/connections.h"
 
 void save_map(struct map *m, char *filename);
 
