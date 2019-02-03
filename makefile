@@ -1,5 +1,16 @@
+.PHONY: clean client server
+
+default: 
+	@echo "please make client or server"
+
 client: client.o networking.o draw.o movement.o diff.o map.o player.h blocks.h
-	gcc -o client client.o networking.o draw.o movement.o diff.o map.o -lncursesw
+	gcc -o start_client client.o networking.o draw.o movement.o diff.o map.o -lncursesw
+
+server: server.o networking.o map.o connections.o server.h
+	gcc -o start_server server.o connections.o networking.o map.o
+
+connections.o: server/connections.c server/connections.h
+	gcc -c server/connections.c
 
 client.o: client.c client.h
 	gcc -c client.c
@@ -18,3 +29,11 @@ diff.o: diff.c diff.h
 
 map.o: map.c map.h
 	gcc -c map.c
+
+server.o: server.c server.h
+	gcc -c server.c
+
+clean:
+	-rm *.o
+	-rm start_server
+	-rm start_client
